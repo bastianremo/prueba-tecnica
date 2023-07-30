@@ -2,13 +2,15 @@
 
 body {
     font-family: "Roboto", sans-serif;
-    margin: 0px;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-        url("/src/assets/img/background-image.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
 }
 
+main {
+    flex: 1;
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -221,15 +223,14 @@ table tr:hover {
 h1 {
     font-size: 2.5em;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 0.5em;
+    color: black;
 }
 
 /* Para títulos medianos, como encabezados de sección */
 h2 {
     font-size: 2em;
     font-weight: bold;
-    color: #333;
+    color: black;
     margin-bottom: 0.5em;
 }
 
@@ -237,7 +238,7 @@ h2 {
 h3 {
     font-size: 1.75em;
     font-weight: bold;
-    color: #333;
+    color: black;
     margin-bottom: 0.5em;
 }
 
@@ -247,7 +248,7 @@ h5,
 h6 {
     font-size: 1.5em;
     font-weight: bold;
-    color: #333;
+    color: black;
     margin-bottom: 0.5em;
 }
 

@@ -1,0 +1,9 @@
+.banner-background {
+    height: 300px; /* o la altura que desees */
+    width: 100%; /* o el ancho que desees */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 70, 221, 0.5)),
+        url("/assets/img/background2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; /* centra la imagen en el contenedor */
+}
