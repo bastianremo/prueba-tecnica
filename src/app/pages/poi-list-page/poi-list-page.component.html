@@ -11,15 +11,15 @@
 
     <!-- <hr style="border: none; border: 1px solid lightgray;"> -->
 </div>
-<div class="mt-1 m-5">
-    <p>* Lista de sitios dentro de un límite geográfico o cerca de una latitud/longitud específica.</p>
-
+<div class="mt-1 m-5" *ngIf="!showError">
+    
     <div class="mt-3" *ngIf="!loading">
+        <p>* Lista de sitios dentro de un límite geográfico o cerca de una latitud/longitud específica.</p>
         <div class="my-flex justify-content-end">
             <input [(ngModel)]="searchTerm" (input)="filterItems()" placeholder="Buscar coincidencias...">
         </div>
 
-        <div class="table-container mt-1">
+        <div class="table-container mt-1 scroll">
             <table>
                 <thead>
                     <tr>
@@ -49,27 +49,27 @@
                     <ng-container *ngIf="currentItems.length > 0">
                         <tr *ngFor="let poi of currentItems">
                             <td>
-                                {{poi.ID}}
+                                {{poi?.ID || '-'}}
                             </td>
                             <td>
-                                {{poi.StatusType.Title}}
+                                {{poi?.StatusType?.Title || '-'}}
                             </td>
                             <td>
-                                {{poi.OperatorInfo.Title}}
+                                {{poi?.OperatorInfo?.Title || '-'}}
                             </td>
                             <td>
-                                {{poi.Connections.length}}
+                                {{poi?.Connections?.length || '-'}}
                             </td>
                             <td>
                                 <span>
-                                    Latitud: {{poi.AddressInfo.Latitude}} <br>
+                                    Latitud: {{poi?.AddressInfo?.Latitude || '-'}} <br>
                                 </span>
                                 <span>
-                                    Longitud: {{poi.AddressInfo.Longitude}}
+                                    Longitud: {{poi?.AddressInfo?.Longitude || '-'}}
                                 </span>
                             </td>
                             <td>
-                                {{poi.AddressInfo.Country.Title}}
+                                {{poi?.AddressInfo?.Country?.Title || '-'}}
                             </td>
                         </tr>
                     </ng-container>
@@ -88,18 +88,19 @@
         <div class="my-flex justify-content-end">
             <p>Página {{currentPage}} de {{totalPages}}</p>
         </div>
-        <div class="my-flex justify-content-between mt-3"
-            [ngClass]="currentPage !== 1 ? 'justify-content-between' : 'justify-content-end'">
-            <button *ngIf="currentPage !== 1" (click)="previousPage()">
+        <div class="my-flex justify-content-between mt-3">
+            <button [disabled]="currentPage == 1" (click)="previousPage()">
                 {{'< Página anterior '}}
             </button>
-            <button (click)="nextPage()">Página siguiente ></button>
+            <button [disabled]="currentPage == totalPages" (click)="nextPage()">Página siguiente ></button>
         </div>
-
-
     </div>
 
     <app-loading *ngIf="loading"></app-loading>
 
     
+    
+</div>
+<div class="my-flex justify-content-center align-items-center text-center" *ngIf="showError">
+    <h5>Ha ocurrido un problema al obtener los puntos de interés, por favor intenta nuevamente.</h5>
 </div>

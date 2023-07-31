@@ -11,6 +11,7 @@ import { PoiService } from 'src/app/services/poi.service';
 export class PoiListPageComponent implements OnInit {
 
   loading = false;
+  showError = false;
 
   currentPage = 1;
   itemsPerPage = 15;
@@ -43,6 +44,7 @@ export class PoiListPageComponent implements OnInit {
       },
       error: error => {
         console.error(error);
+        this.showError = true;
         this.loading = false;
       }
     });
