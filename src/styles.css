@@ -8,13 +8,34 @@ body {
     margin: 0;
 }
 
-main {
+.app-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
+
+.main-content {
+    flex: 1;
+    padding-bottom: 60px; /* Adjust the padding to keep space for the footer */
+    min-height: calc(100vh - 60px); /* Set minimum height to fill the screen, excluding footer height */
+}
+
+footer {
+    background-color: #414141;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.table-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
 }
 
 table th,
@@ -25,13 +46,13 @@ table td {
 }
 
 table th {
-    background-color: #4285f4;
+    background-color: #414141;
     color: white;
 }
 
-table tr:nth-child(even) {
+/* table tr:nth-child(even) {
     background-color: #f2f2f2;
-}
+} */
 
 table tr:hover {
     background-color: #ddd;
@@ -221,7 +242,7 @@ table tr:hover {
 
 /* Para títulos grandes, como encabezados de página */
 h1 {
-    font-size: 2.5em;
+    font-size: 3.5em;
     font-weight: bold;
     color: black;
 }
@@ -317,5 +338,5 @@ input:focus {
 }
 
 input::placeholder {
-    color: #bdbdbd;
+    color: #a1a1a1;
 }

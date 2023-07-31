@@ -3,82 +3,88 @@
 
 
     <div style="text-align: center;">
-        <h1>Puntos de interés</h1>
-        <h6 style="color: aliceblue;">Lista de sitios dentro de un límite geográfico <br>o cerca de una latitud/longitud específica</h6>
-      </div>
-      
+        <h1>Puntos de Interés</h1>
+        <!-- <h6 style="color: aliceblue;">Lista de sitios dentro de un límite geográfico <br>o cerca de una latitud/longitud
+            específica</h6> -->
+    </div>
+
 
     <!-- <hr style="border: none; border: 1px solid lightgray;"> -->
 </div>
 <div class="mt-1 m-5">
-
+    <p>* Lista de sitios dentro de un límite geográfico o cerca de una latitud/longitud específica.</p>
 
     <div class="mt-3" *ngIf="!loading">
-        <input [(ngModel)]="searchTerm" (input)="filterItems()" placeholder="Buscar...">
+        <div class="my-flex justify-content-end">
+            <input [(ngModel)]="searchTerm" (input)="filterItems()" placeholder="Buscar coincidencias...">
+        </div>
 
-        <table class="table mt-1">
-            <thead>
-                <tr>
-                    <th class="pointer" (click)="sortBy('ID')">ID {{sortDirections['ID'] == 'asc' ? '↑' : '↓'}}</th>
-                    <th class="pointer" (click)="sortBy('StatusType.Title')">Estado {{sortDirections['StatusType.Title']
-                        ==
-                        'asc' ? '↑' : '↓'}}</th>
-                    <th class="pointer" (click)="sortBy('OperatorInfo.Title')">Operador
-                        {{sortDirections['OperatorInfo.Title'] == 'asc' ? '↑' : '↓'}}</th>
-                    <th class="pointer" (click)="sortBy('Connections.length')">N° de Conexiones
-                        {{sortDirections['Connections.length'] == 'asc' ? '↑' : '↓'}}</th>
-                    <th>
-                        <span class="mr-3"> Coordenadas </span>
-                        <span (click)="sortBy('AddressInfo.Latitude')" class="pointer mr-3">
-                            latitud {{sortDirections['AddressInfo.Latitude'] == 'asc' ? '↑' : '↓'}}
-                        </span>
-                        <span (click)="sortBy('AddressInfo.Longitude')" class="pointer">
-                            longitud {{sortDirections['AddressInfo.Longitude'] == 'asc' ? '↑' : '↓'}}
-                        </span>
-                    </th>
-                    <th class="pointer" (click)="sortBy('AddressInfo.Country.Title')">País
-                        {{sortDirections['AddressInfo.Country.Title'] == 'asc' ? '↑' : '↓'}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngIf="currentItems.length > 0">
-                    <tr *ngFor="let poi of currentItems">
-                        <td>
-                            {{poi.ID}}
-                        </td>
-                        <td>
-                            {{poi.StatusType.Title}}
-                        </td>
-                        <td>
-                            {{poi.OperatorInfo.Title}}
-                        </td>
-                        <td>
-                            {{poi.Connections.length}}
-                        </td>
-                        <td>
-                            <span>
-                                Latitud: {{poi.AddressInfo.Latitude}} <br>
-                            </span>
-                            <span>
-                                Longitud: {{poi.AddressInfo.Longitude}}
-                            </span>
-                        </td>
-                        <td>
-                            {{poi.AddressInfo.Country.Title}}
-                        </td>
-                    </tr>
-                </ng-container>
-                <ng-container *ngIf="currentItems.length == 0">
+        <div class="table-container mt-1">
+            <table>
+                <thead>
                     <tr>
-                        <td colspan="6">
-                            <div class="my-flex justify-content-center">
-                                <h5>No se han encontrado puntos de interés, por favor intenta nuevamente.</h5>
-                            </div>
-                        </td>
+                        <th class="pointer" (click)="sortBy('ID')">ID {{sortDirections['ID'] == 'asc' ? '↑' : '↓'}}</th>
+                        <th class="pointer" (click)="sortBy('StatusType.Title')">Estado
+                            {{sortDirections['StatusType.Title']
+                            ==
+                            'asc' ? '↑' : '↓'}}</th>
+                        <th class="pointer" (click)="sortBy('OperatorInfo.Title')">Operador
+                            {{sortDirections['OperatorInfo.Title'] == 'asc' ? '↑' : '↓'}}</th>
+                        <th class="pointer" (click)="sortBy('Connections.length')">N° de Conexiones
+                            {{sortDirections['Connections.length'] == 'asc' ? '↑' : '↓'}}</th>
+                        <th>
+                            <span class="mr-3"> Coordenadas </span>
+                            <span (click)="sortBy('AddressInfo.Latitude')" class="pointer mr-3">
+                                latitud {{sortDirections['AddressInfo.Latitude'] == 'asc' ? '↑' : '↓'}}
+                            </span>
+                            <span (click)="sortBy('AddressInfo.Longitude')" class="pointer">
+                                longitud {{sortDirections['AddressInfo.Longitude'] == 'asc' ? '↑' : '↓'}}
+                            </span>
+                        </th>
+                        <th class="pointer" (click)="sortBy('AddressInfo.Country.Title')">País
+                            {{sortDirections['AddressInfo.Country.Title'] == 'asc' ? '↑' : '↓'}}</th>
                     </tr>
-                </ng-container>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="currentItems.length > 0">
+                        <tr *ngFor="let poi of currentItems">
+                            <td>
+                                {{poi.ID}}
+                            </td>
+                            <td>
+                                {{poi.StatusType.Title}}
+                            </td>
+                            <td>
+                                {{poi.OperatorInfo.Title}}
+                            </td>
+                            <td>
+                                {{poi.Connections.length}}
+                            </td>
+                            <td>
+                                <span>
+                                    Latitud: {{poi.AddressInfo.Latitude}} <br>
+                                </span>
+                                <span>
+                                    Longitud: {{poi.AddressInfo.Longitude}}
+                                </span>
+                            </td>
+                            <td>
+                                {{poi.AddressInfo.Country.Title}}
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <ng-container *ngIf="currentItems.length == 0">
+                        <tr>
+                            <td colspan="6">
+                                <div class="my-flex justify-content-center">
+                                    <h5>No se han encontrado puntos de interés, por favor intenta nuevamente.</h5>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
         <div class="my-flex justify-content-end">
             <p>Página {{currentPage}} de {{totalPages}}</p>
         </div>
